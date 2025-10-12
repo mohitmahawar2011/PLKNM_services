@@ -21,6 +21,9 @@ import { ServiceSchema, FAQSchema } from "../components/seo/StructuredData";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import HeroSlider from "../components/ui/HeroSlider";
+import Testimonials from "../components/ui/Testimonials";
+import Statistics from "../components/ui/Statistics";
+import RecentWork from "../components/ui/RecentWork";
 
 // Homepage metadata for SEO
 export const metadata = {
@@ -166,44 +169,136 @@ export default function Home() {
             </div>
           </div>
         </section>
+        
+        {/* Statistics Section */}
+        <Statistics />
 
         {/* Our Specializations Section */}
-        <section className="py-16" style={{ backgroundColor: 'var(--background-alt)' }}>
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>
-                Our Specializations
+        <section className="py-20 relative overflow-hidden" style={{ backgroundColor: 'var(--background-alt)' }}>
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}></div>
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <div 
+                className="inline-block px-4 py-2 bg-teal-100 text-teal-600 text-sm font-semibold rounded-full mb-4 opacity-0 animate-fade-in-up"
+                style={{
+                  animationDelay: '0.2s',
+                  animationFillMode: 'forwards'
+                }}
+              >
+                Our Expertise
+              </div>
+              <h2 
+                className="text-4xl md:text-5xl font-bold mb-6 opacity-0 animate-fade-in-up" 
+                style={{ 
+                  color: 'var(--foreground)',
+                  animationDelay: '0.4s',
+                  animationFillMode: 'forwards'
+                }}
+              >
+                Specialized Plumbing Solutions
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                We are full-scale contractors specializing in large-scale plumbing projects.
-                Our expertise spans across various commercial and luxury residential developments.
+              <p 
+                className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in-up"
+                style={{
+                  animationDelay: '0.6s',
+                  animationFillMode: 'forwards'
+                }}
+              >
+                We deliver comprehensive plumbing solutions tailored to your specific needs. 
+                From luxury resorts to commercial complexes, our expertise ensures flawless execution.
               </p>
             </div>
 
+            {/* Services Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-all duration-200 border border-gray-100">
-                  <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--foreground)' }}>
-                    {service.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {service.description}
-                  </p>
-                  <Link
-                    href={service.link}
-                    className="inline-flex items-center font-medium text-primary hover:text-primary-dark transition-colors duration-200"
-                  >
-                    Learn More
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                <div 
+                  key={index} 
+                  className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 opacity-0 animate-fade-in-up hover:-translate-y-2"
+                  style={{
+                    animationDelay: `${0.8 + (index * 0.1)}s`,
+                    animationFillMode: 'forwards'
+                  }}
+                >
+                  {/* Gradient Background on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-blue-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                      <div className="text-2xl text-white group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-teal-600 transition-colors duration-300">
+                      {service.name}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed mb-6 group-hover:text-gray-700 transition-colors duration-300">
+                      {service.description}
+                    </p>
+                    
+                    {/* Learn More Button */}
+                    <Link
+                      href={service.link}
+                      className="inline-flex items-center text-teal-600 font-semibold group-hover:text-teal-700 transition-colors duration-300"
+                    >
+                      Learn More
+                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+
+                  {/* Decorative Element */}
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-teal-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-4 left-4 w-6 h-6 bg-blue-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ animationDelay: '0.2s' }}></div>
                 </div>
               ))}
             </div>
+
+            {/* Bottom CTA */}
+            <div 
+              className="text-center mt-16 opacity-0 animate-fade-in-up"
+              style={{
+                animationDelay: '1.4s',
+                animationFillMode: 'forwards'
+              }}
+            >
+              <div className="inline-flex items-center space-x-4 bg-white rounded-full px-8 py-4 shadow-lg border border-gray-100">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-gray-600">Available 24/7</span>
+                </div>
+                <div className="w-px h-6 bg-gray-300"></div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                  <span className="text-sm font-medium text-gray-600">Emergency Service</span>
+                </div>
+                <div className="w-px h-6 bg-gray-300"></div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                  <span className="text-sm font-medium text-gray-600">Expert Team</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
+
+        {/* Testimonials Section */}
+        <Testimonials />
+
+        {/* Recent Work Section */}
+        <RecentWork />
 
         {/* Why Choose Us Section */}
         <section className="py-16 bg-white">
@@ -263,55 +358,41 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section className="py-16 text-white" style={{ backgroundColor: 'var(--primary)' }}>
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        {/* Ready to Start Project Section */}
+        <section className="py-24 text-white relative overflow-hidden" > 
+          {/* style={{ backgroundColor: '#1A4A3F' }} */}
+          {/* Blueprint Background Image */}
+          <div className="absolute inset-0 opacity-80 overflow-hidden">
+            <img
+              src="/images/hero/blueprint.png"
+              alt="Blueprint background"
+              className="absolute inset-0 w-full h-full object-cover object-center transform scale-150"
+              style={{ minHeight: '100%', minWidth: '100%' }}
+            />
+          </div>
+          
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/30"></div>
+
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <p className="text-white text-md font-medium mb-2">Get Started</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 !text-white">
               Ready to Start Your Project?
             </h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg mb-8 max-w-2xl mx-auto leading-relaxed text-white/90">
               Contact us today to discuss your large-scale plumbing project. Our experienced team
-              is ready to provide professional contractor services for your commercial or residential development.
+              is ready to provide professional contractor services.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">📞</span>
-                <div>
-                  <div className="font-semibold">Call Us</div>
-                  <a href={`tel:${siteConfig.contact.phone}`}
-                     className="hover:opacity-80 transition-opacity duration-200"
-                     style={{ color: 'var(--secondary-light)' }}>
-                    {siteConfig.contact.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">✉️</span>
-                <div>
-                  <div className="font-semibold">Email Us</div>
-                  <a href={`mailto:${siteConfig.contact.email}`}
-                     className="hover:opacity-80 transition-opacity duration-200"
-                     style={{ color: 'var(--secondary-light)' }}>
-                    {siteConfig.contact.email}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Link
                 href="/contact"
-                className="bg-white text-primary px-8 py-3 rounded-md font-semibold text-lg hover:bg-gray-100 transition-colors duration-200"
+                className="inline-flex items-center gap-3 bg-orange-400 hover:bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 hover:scale-105 shadow-lg"
               >
-                Get Project Quote
-              </Link>
-              <Link
-                href="/clients"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-3 rounded-md font-semibold text-lg transition-colors duration-200"
-              >
-                View Our Work
+                <span>Get Project Quote</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
               </Link>
             </div>
           </div>

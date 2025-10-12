@@ -13,6 +13,9 @@ import { siteConfig } from "../../lib/seo-config";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import { ServiceSchema } from "../../components/seo/StructuredData";
+import Image from "next/image";
+import pipe_lines from "@/public/images/service/copper_pipeline.jpg";
+import golden_tulip from "@/public/images/service/golden_tulip.webp";
 
 // Services page metadata
 export const metadata = {
@@ -143,18 +146,37 @@ export default function ServicesPage() {
       {/* Main Content */}
       <div style={{ backgroundColor: 'var(--background)' }}>
         {/* Page Header */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>
-              Our Professional Services
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              With over 50 years of experience, {siteConfig.name} provides comprehensive plumbing 
-              contractor services for large-scale commercial and residential projects. We are not 
-              small service providers but full-scale contractors specializing in major developments.
-            </p>
-          </div>
-        </section>
+        <section
+      className="py-10 relative bg-cover bg-center bg-no-repeat"
+    >
+            <Image
+              src={pipe_lines}
+              alt="Various pipes background"
+              fill
+              className="object-cover"
+              priority
+              style={{
+                opacity: 0.9,
+              }}
+            />
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-opacity-70"></div>
+      <div className="absolute inset-0 opacity-90">
+
+      </div>
+
+      <div className="container mx-auto px-4 text-center relative z-10 flex flex-col justify-center" style={{ minHeight: "400px" }}>
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-dark">
+          Our Professional Services
+        </h1>
+        <p className="text-xl text-dark font-bold max-w-3xl mx-auto leading-relaxed">
+          With over 50 years of experience, {siteConfig.name} provides comprehensive plumbing
+          contractor services for large-scale commercial and residential projects. We are not
+          small service providers but full-scale contractors specializing in major developments.
+        </p>
+      </div>
+    </section>
+
 
         {/* Services Grid */}
         <section className="py-16" style={{ backgroundColor: 'var(--background-alt)' }}>
@@ -163,8 +185,19 @@ export default function ServicesPage() {
               {services.map((service) => (
                 <div key={service.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   {/* Service Image */}
-                  <div className="h-64 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                    <span className="text-6xl">{service.icon}</span>
+                  <div className="h-64 relative overflow-hidden">
+                    <Image
+                      src={golden_tulip}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                      style={{
+                        opacity: 0.9,
+                      }}
+                    />
+                    {/* <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                      <span className="text-6xl">{service.icon}</span>
+                    </div> */}
                   </div>
                   
                   {/* Service Content */}
