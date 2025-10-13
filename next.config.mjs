@@ -27,20 +27,20 @@ const nextConfig = {
   // Image optimization settings
   images: {
     // Enable image optimization
-    formats: ['image/webp', 'image/avif'],
+    formats: ["image/webp", "image/avif"],
     // Use remotePatterns instead of domains (new Next.js 15 format)
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'plknm-plumbing.com',
+        protocol: "https",
+        hostname: "plknm-plumbing.com",
       },
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
       {
-        protocol: 'https',
-        hostname: 'cdn.example.com',
+        protocol: "https",
+        hostname: "cdn.example.com",
       },
     ],
     // Image sizes for responsive images
@@ -66,53 +66,53 @@ const nextConfig = {
     return [
       {
         // Apply security headers to all routes
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           // Security headers
           {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
           },
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
           },
           {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
           {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin'
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
           },
           // Performance headers
           {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
           },
         ],
       },
       {
         // Cache static assets
-        source: '/images/(.*)',
+        source: "/images/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
         // Cache fonts
-        source: '/fonts/(.*)',
+        source: "/fonts/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
@@ -124,13 +124,13 @@ const nextConfig = {
     return [
       // Example redirects - customize based on your needs
       {
-        source: '/plumber',
-        destination: '/',
+        source: "/plumber",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/plumbing',
-        destination: '/services',
+        source: "/plumbing",
+        destination: "/services",
         permanent: true,
       },
       // Add more redirects as needed
@@ -142,8 +142,8 @@ const nextConfig = {
     return [
       // Example rewrites - customize based on your needs
       {
-        source: '/emergency',
-        destination: '/services/emergency-plumbing',
+        source: "/emergency",
+        destination: "/services/emergency-plumbing",
       },
       // Add more rewrites as needed
     ];
@@ -153,7 +153,7 @@ const nextConfig = {
   webpack: (config, { dev, isServer }) => {
     // Optimize bundle size
     if (!dev && !isServer) {
-      config.optimization.splitChunks.chunks = 'all';
+      config.optimization.splitChunks.chunks = "all";
     }
 
     return config;
@@ -161,8 +161,8 @@ const nextConfig = {
 
   // Environment variables
   env: {
-    SITE_NAME: 'PLKNM Plumbing Services',
-    SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://plknm-plumbing.com',
+    SITE_NAME: "PLKNM Plumbing Services",
+    SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "https://plknm-plumbing.com",
   },
 
   // Output configuration for static export (if needed)

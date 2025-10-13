@@ -1,31 +1,30 @@
 /**
  * Header Component for PLKNM Plumbing Services
- * 
+ *
  * Classic-style header with navigation for the plumbing contractor website.
  * Features professional styling with light blue and green color scheme.
- * 
+ *
  * @author PLKNM Development Team
  * @version 1.0.0
  */
 
-
 "use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { siteConfig } from '../../lib/seo-config';
-import Image from 'next/image';
+import { useState } from "react";
+import Link from "next/link";
+import { siteConfig } from "../../lib/seo-config";
+import Image from "next/image";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigationItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Clients', href: '/clients' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Certifications', href: '/certifications' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Clients", href: "/clients" },
+    { name: "About Us", href: "/about" },
+    { name: "Certifications", href: "/certifications" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -36,22 +35,28 @@ export default function Header() {
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
             <div className="flex items-center space-x-4">
               <span className="flex items-center">
-                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                  className="w-4 h-4 mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
                 {siteConfig.contact.phone}
               </span>
               <span className="flex items-center">
-                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                  className="w-4 h-4 mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
                 {siteConfig.contact.email}
               </span>
             </div>
-            <div className="text-xs mt-1 sm:mt-0">
-              {siteConfig.tagline}
-            </div>
+            <div className="text-xs mt-1 sm:mt-0">{siteConfig.tagline}</div>
           </div>
         </div>
       </div>
@@ -63,7 +68,12 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3">
             <div className="w-12 h-20 rounded-full flex items-center justify-center">
               {/* <span className="text-white font-bold text-xl">P</span> */}
-              <Image src="/logo.svg" alt="PLKNM Plumbing Services Logo" width={48} height={48} />
+              <Image
+                src="/logo.svg"
+                alt="PLKNM Plumbing Services Logo"
+                width={48}
+                height={48}
+              />
             </div>
             {/* <divP>
               <h1 className="text-xl font-bold text-gray-800 leading-tight">
@@ -77,7 +87,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navigationItems.map((item) => (
+            {navigationItems.map(item => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -101,11 +111,26 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -115,7 +140,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="lg:hidden mt-4 py-4 border-t border-gray-200">
             <div className="flex flex-col space-y-3">
-              {navigationItems.map((item) => (
+              {navigationItems.map(item => (
                 <Link
                   key={item.name}
                   href={item.href}

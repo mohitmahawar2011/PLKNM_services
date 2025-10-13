@@ -19,7 +19,11 @@ import { Open_Sans, Lato } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { defaultMetadata, siteConfig } from "../lib/seo-config";
-import { LocalBusinessSchema, OrganizationSchema, WebsiteSchema } from "../components/seo/StructuredData";
+import {
+  LocalBusinessSchema,
+  OrganizationSchema,
+  WebsiteSchema,
+} from "../components/seo/StructuredData";
 
 // Classic fonts for professional appearance
 const openSans = Open_Sans({
@@ -141,14 +145,15 @@ export const metadata = {
  */
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${openSans.variable} ${lato.variable}`}
-    >
+    <html lang="en" className={`${openSans.variable} ${lato.variable}`}>
       <head>
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
 
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
@@ -162,7 +167,10 @@ export default function RootLayout({ children }) {
 
       <body
         className={`font-open-sans antialiased min-h-screen`}
-        style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}
+        style={{
+          backgroundColor: "var(--background)",
+          color: "var(--foreground)",
+        }}
         suppressHydrationWarning={true}
       >
         {/* Skip to main content link for accessibility */}
@@ -179,7 +187,7 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Google Analytics (replace with your tracking ID) */}
-        {process.env.NODE_ENV === 'production' && (
+        {process.env.NODE_ENV === "production" && (
           <>
             <Script
               src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"

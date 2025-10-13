@@ -1,20 +1,20 @@
 /**
  * Dynamic robots.txt generator for PLKNM Plumbing Services
- * 
+ *
  * This file generates a robots.txt file dynamically to control
  * how search engine crawlers interact with the website.
- * 
+ *
  * Features:
  * - Allows all crawlers to access the site
  * - Points to the sitemap location
  * - Includes crawl delay for better server performance
  * - Blocks access to admin and private areas
- * 
+ *
  * @author PLKNM Development Team
  * @version 1.0.0
  */
 
-import { siteConfig } from '../../lib/seo-config.js';
+import { siteConfig } from "../../lib/seo-config.js";
 
 export async function GET() {
   const robotsTxt = `# Robots.txt for ${siteConfig.name}
@@ -79,13 +79,13 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-# Last updated: ${new Date().toISOString().split('T')[0]}
+# Last updated: ${new Date().toISOString().split("T")[0]}
 `;
 
   return new Response(robotsTxt, {
     headers: {
-      'Content-Type': 'text/plain',
-      'Cache-Control': 'public, max-age=86400', // Cache for 24 hours
+      "Content-Type": "text/plain",
+      "Cache-Control": "public, max-age=86400", // Cache for 24 hours
     },
   });
 }

@@ -5,6 +5,7 @@ A professional, SEO-optimized website for **Panna Lal Krishna Nand Mahawar Plumb
 ## 🚀 Features
 
 ### SEO Optimization
+
 - **Comprehensive Meta Tags**: Title, description, keywords, Open Graph, Twitter Cards
 - **Structured Data**: Local business, organization, service, and FAQ schemas
 - **Dynamic Sitemap**: Auto-generated XML sitemap with proper priorities
@@ -13,6 +14,7 @@ A professional, SEO-optimized website for **Panna Lal Krishna Nand Mahawar Plumb
 - **Local SEO**: Geographic targeting and local business optimization
 
 ### Performance & Accessibility
+
 - **Next.js 15**: Latest features and optimizations
 - **Image Optimization**: WebP/AVIF support with responsive images
 - **Font Optimization**: Google Fonts with display swap
@@ -20,6 +22,7 @@ A professional, SEO-optimized website for **Panna Lal Krishna Nand Mahawar Plumb
 - **Mobile-First**: Responsive design with Tailwind CSS
 
 ### Technical Features
+
 - **TypeScript Ready**: Easy migration to TypeScript
 - **Component Architecture**: Reusable SEO components
 - **Environment Configuration**: Secure environment variable management
@@ -102,6 +105,7 @@ Update the business information in `lib/seo-config.js`:
 Create and add the following images to the `public/` directory:
 
 #### Favicon and Icons
+
 - `favicon.ico` (32x32)
 - `favicon-16x16.png`
 - `favicon-32x32.png`
@@ -112,12 +116,14 @@ Create and add the following images to the `public/` directory:
 - `safari-pinned-tab.svg`
 
 #### SEO Images
+
 - `images/og-image.jpg` (1200x630) - Open Graph image
 - `images/twitter-image.jpg` (1200x600) - Twitter Card image
 - `images/homepage-og.jpg` (1200x630) - Homepage specific image
 - `images/logo.png` - Company logo
 
 #### Service Icons (optional)
+
 - `icons/emergency-96x96.png`
 - `icons/quote-96x96.png`
 - `icons/contact-96x96.png`
@@ -125,16 +131,19 @@ Create and add the following images to the `public/` directory:
 ### 4. Google Services Setup
 
 #### Google Analytics
+
 1. Create a Google Analytics 4 property
 2. Add your tracking ID to `.env.local`
 3. Update the tracking code in `app/layout.js`
 
 #### Google Search Console
+
 1. Verify your website ownership
 2. Add verification code to `.env.local`
 3. Submit your sitemap: `https://your-domain.com/sitemap.xml`
 
 #### Google My Business
+
 1. Create or claim your business listing
 2. Ensure NAP (Name, Address, Phone) consistency
 3. Add your website URL
@@ -153,6 +162,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 ## 📊 SEO Checklist
 
 ### ✅ Technical SEO
+
 - [x] Meta titles and descriptions
 - [x] Structured data (JSON-LD)
 - [x] XML sitemap
@@ -165,6 +175,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - [x] Page speed optimization
 
 ### ✅ Local SEO
+
 - [x] Local business schema
 - [x] NAP consistency
 - [x] Geographic targeting
@@ -173,6 +184,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - [x] Contact information schema
 
 ### ✅ Content SEO
+
 - [x] Proper heading hierarchy (H1-H6)
 - [x] Keyword optimization
 - [x] Internal linking structure
@@ -181,6 +193,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - [x] Service page optimization
 
 ### 🔄 Manual Setup Required
+
 - [ ] Google Analytics configuration
 - [ ] Google Search Console verification
 - [ ] Google My Business optimization
@@ -191,12 +204,15 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 1. Connect your GitHub repository to Vercel
 2. Add environment variables in Vercel dashboard
 3. Deploy automatically on push to main branch
 
 ### Other Platforms
+
 The website is compatible with:
+
 - Netlify
 - AWS Amplify
 - Digital Ocean App Platform
@@ -205,6 +221,7 @@ The website is compatible with:
 ## 📈 SEO Monitoring
 
 ### Tools to Use
+
 - **Google Search Console**: Monitor search performance
 - **Google Analytics**: Track website traffic and user behavior
 - **Google PageSpeed Insights**: Monitor page speed
@@ -212,6 +229,7 @@ The website is compatible with:
 - **SEMrush/Ahrefs**: Keyword tracking and competitor analysis
 
 ### Key Metrics to Track
+
 - Organic search traffic
 - Local search rankings
 - Page load speed
@@ -222,18 +240,21 @@ The website is compatible with:
 ## 🔧 Customization
 
 ### Adding New Pages
+
 1. Create page component in `app/` directory
 2. Add SEO metadata using `generatePageMetadata()`
 3. Include structured data if applicable
 4. Update sitemap in `app/sitemap.xml/route.js`
 
 ### Adding New Services
+
 1. Create service page in `app/services/[service]/page.js`
 2. Add service to sitemap configuration
 3. Update homepage service highlights
 4. Add service-specific schema markup
 
 ### Modifying SEO Settings
+
 - **Global settings**: Update `lib/seo-config.js`
 - **Page-specific**: Use metadata export in page components
 - **Structured data**: Modify components in `components/seo/`

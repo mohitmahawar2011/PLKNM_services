@@ -1,9 +1,9 @@
 /**
  * Structured Data Component for PLKNM Plumbing Services
- * 
+ *
  * This component renders JSON-LD structured data for better SEO.
  * It helps search engines understand the content and context of pages.
- * 
+ *
  * Features:
  * - Local Business schema
  * - Service schema
@@ -11,12 +11,12 @@
  * - Breadcrumb schema
  * - FAQ schema
  * - Review schema
- * 
+ *
  * @author PLKNM Development Team
  * @version 1.0.0
  */
 
-import { structuredData } from '../../lib/seo-config.js';
+import { structuredData } from "../../lib/seo-config.js";
 
 /**
  * Main Structured Data Component
@@ -25,29 +25,29 @@ import { structuredData } from '../../lib/seo-config.js';
  * @param {Object} props.data - Additional data to merge with default schema
  * @returns {JSX.Element} Script tag with JSON-LD structured data
  */
-export default function StructuredData({ type = 'localBusiness', data = {} }) {
+export default function StructuredData({ type = "localBusiness", data = {} }) {
   let schema;
 
   switch (type) {
-    case 'localBusiness':
+    case "localBusiness":
       schema = { ...structuredData.localBusiness, ...data };
       break;
-    case 'organization':
+    case "organization":
       schema = { ...structuredData.organization, ...data };
       break;
-    case 'website':
+    case "website":
       schema = { ...structuredData.website, ...data };
       break;
-    case 'service':
+    case "service":
       schema = generateServiceSchema(data);
       break;
-    case 'breadcrumb':
+    case "breadcrumb":
       schema = generateBreadcrumbSchema(data);
       break;
-    case 'faq':
+    case "faq":
       schema = generateFAQSchema(data);
       break;
-    case 'review':
+    case "review":
       schema = generateReviewSchema(data);
       break;
     default:
@@ -73,19 +73,21 @@ function generateServiceSchema(serviceData) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": serviceData.name || "Plumbing Service",
-    "description": serviceData.description || "Professional plumbing service",
-    "provider": {
+    name: serviceData.name || "Plumbing Service",
+    description: serviceData.description || "Professional plumbing service",
+    provider: {
       "@type": "LocalBusiness",
-      "name": structuredData.localBusiness.name,
-      "url": structuredData.localBusiness.url,
-      "telephone": structuredData.localBusiness.telephone,
-      "address": structuredData.localBusiness.address
+      name: structuredData.localBusiness.name,
+      url: structuredData.localBusiness.url,
+      telephone: structuredData.localBusiness.telephone,
+      address: structuredData.localBusiness.address,
     },
-    "serviceType": serviceData.serviceType || "Plumbing",
-    "areaServed": serviceData.areaServed || structuredData.localBusiness.serviceArea,
-    "hasOfferCatalog": serviceData.offers || structuredData.localBusiness.hasOfferCatalog,
-    ...serviceData
+    serviceType: serviceData.serviceType || "Plumbing",
+    areaServed:
+      serviceData.areaServed || structuredData.localBusiness.serviceArea,
+    hasOfferCatalog:
+      serviceData.offers || structuredData.localBusiness.hasOfferCatalog,
+    ...serviceData,
   };
 }
 
@@ -98,12 +100,12 @@ function generateBreadcrumbSchema(breadcrumbs) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": breadcrumbs.map((item, index) => ({
+    itemListElement: breadcrumbs.map((item, index) => ({
       "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": item.url
-    }))
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
   };
 }
 
@@ -116,14 +118,14 @@ function generateFAQSchema(faqs) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
+    mainEntity: faqs.map(faq => ({
       "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
+      name: faq.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
+        text: faq.answer,
+      },
+    })),
   };
 }
 
@@ -136,29 +138,30 @@ function generateReviewSchema(reviewData) {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": structuredData.localBusiness.name,
-    "aggregateRating": {
+    name: structuredData.localBusiness.name,
+    aggregateRating: {
       "@type": "AggregateRating",
-      "ratingValue": reviewData.averageRating || "4.8",
-      "reviewCount": reviewData.reviewCount || "150",
-      "bestRating": "5",
-      "worstRating": "1"
+      ratingValue: reviewData.averageRating || "4.8",
+      reviewCount: reviewData.reviewCount || "150",
+      bestRating: "5",
+      worstRating: "1",
     },
-    "review": reviewData.reviews?.map(review => ({
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": review.author
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": review.rating,
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "reviewBody": review.text,
-      "datePublished": review.date
-    })) || []
+    review:
+      reviewData.reviews?.map(review => ({
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: review.author,
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: review.rating,
+          bestRating: "5",
+          worstRating: "1",
+        },
+        reviewBody: review.text,
+        datePublished: review.date,
+      })) || [],
   };
 }
 

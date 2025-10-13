@@ -1,39 +1,39 @@
 /**
  * Contact Form Component for PLKNM Plumbing Services
- * 
+ *
  * Professional contact form with validation and email functionality.
  * Features classic styling and user-friendly interface.
- * 
+ *
  * @author PLKNM Development Team
  * @version 1.0.0
  */
 
 "use client";
 
-import { useState } from 'react';
-import { siteConfig } from '../../lib/seo-config';
+import { useState } from "react";
+import { siteConfig } from "../../lib/seo-config";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
@@ -41,7 +41,7 @@ export default function ContactForm() {
     try {
       // Here you would typically send the form data to your backend
       // For now, we'll simulate a successful submission
-      
+
       // Example using fetch to send to your backend:
       // const response = await fetch('/api/contact', {
       //   method: 'POST',
@@ -55,23 +55,22 @@ export default function ContactForm() {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       // For demonstration, we'll show success message
-      setSubmitStatus('success');
+      setSubmitStatus("success");
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
       });
 
       // You can also integrate with services like:
       // - EmailJS for client-side email sending
       // - Formspree for form handling
       // - Netlify Forms for static sites
-      
     } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -79,36 +78,57 @@ export default function ContactForm() {
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-8">
-      <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>
+      <h2
+        className="text-2xl font-bold mb-6"
+        style={{ color: "var(--foreground)" }}
+      >
         Get Project Quote
       </h2>
-      
+
       {/* Success Message */}
-      {submitStatus === 'success' && (
+      {submitStatus === "success" && (
         <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
           <div className="flex items-center">
-            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clipRule="evenodd"
+              />
             </svg>
             <span className="font-medium">Thank you for your inquiry!</span>
           </div>
           <p className="mt-2 text-sm">
-            We have received your message and will contact you within 24 hours to discuss your project requirements.
+            We have received your message and will contact you within 24 hours
+            to discuss your project requirements.
           </p>
         </div>
       )}
 
       {/* Error Message */}
-      {submitStatus === 'error' && (
+      {submitStatus === "error" && (
         <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md">
           <div className="flex items-center">
-            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                clipRule="evenodd"
+              />
             </svg>
             <span className="font-medium">Submission failed</span>
           </div>
           <p className="mt-2 text-sm">
-            There was an error sending your message. Please try again or contact us directly.
+            There was an error sending your message. Please try again or contact
+            us directly.
           </p>
         </div>
       )}
@@ -116,7 +136,11 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2" style={{ color: 'var(--foreground)' }}>
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium mb-2"
+            style={{ color: "var(--foreground)" }}
+          >
             Full Name *
           </label>
           <input
@@ -133,7 +157,11 @@ export default function ContactForm() {
 
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: 'var(--foreground)' }}>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium mb-2"
+            style={{ color: "var(--foreground)" }}
+          >
             Email Address *
           </label>
           <input
@@ -150,7 +178,11 @@ export default function ContactForm() {
 
         {/* Phone Field */}
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium mb-2" style={{ color: 'var(--foreground)' }}>
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium mb-2"
+            style={{ color: "var(--foreground)" }}
+          >
             Phone Number
           </label>
           <input
@@ -166,7 +198,11 @@ export default function ContactForm() {
 
         {/* Subject Field */}
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium mb-2" style={{ color: 'var(--foreground)' }}>
+          <label
+            htmlFor="subject"
+            className="block text-sm font-medium mb-2"
+            style={{ color: "var(--foreground)" }}
+          >
             Project Type *
           </label>
           <select
@@ -191,7 +227,11 @@ export default function ContactForm() {
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: 'var(--foreground)' }}>
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium mb-2"
+            style={{ color: "var(--foreground)" }}
+          >
             Project Details *
           </label>
           <textarea
@@ -212,24 +252,40 @@ export default function ContactForm() {
             type="submit"
             disabled={isSubmitting}
             className={`w-full px-6 py-3 rounded-md font-semibold text-white transition-colors duration-200 ${
-              isSubmitting 
-                ? 'bg-gray-400 cursor-not-allowed' 
-                : 'hover:opacity-90'
+              isSubmitting
+                ? "bg-gray-400 cursor-not-allowed"
+                : "hover:opacity-90"
             }`}
-            style={{ 
-              backgroundColor: isSubmitting ? '#9ca3af' : 'var(--primary)'
+            style={{
+              backgroundColor: isSubmitting ? "#9ca3af" : "var(--primary)",
             }}
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 Sending Message...
               </span>
             ) : (
-              'Send Project Inquiry'
+              "Send Project Inquiry"
             )}
           </button>
         </div>
@@ -237,16 +293,20 @@ export default function ContactForm() {
         {/* Contact Info */}
         <div className="border-t border-gray-200 pt-6 mt-6">
           <p className="text-sm text-gray-600 text-center">
-            Or contact us directly at{' '}
-            <a href={`tel:${siteConfig.contact.phone}`} 
-               className="font-medium hover:underline"
-               style={{ color: 'var(--primary)' }}>
+            Or contact us directly at{" "}
+            <a
+              href={`tel:${siteConfig.contact.phone}`}
+              className="font-medium hover:underline"
+              style={{ color: "var(--primary)" }}
+            >
               {siteConfig.contact.phone}
-            </a>
-            {' '}or{' '}
-            <a href={`mailto:${siteConfig.contact.email}`} 
-               className="font-medium hover:underline"
-               style={{ color: 'var(--primary)' }}>
+            </a>{" "}
+            or{" "}
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="font-medium hover:underline"
+              style={{ color: "var(--primary)" }}
+            >
               {siteConfig.contact.email}
             </a>
           </p>

@@ -1,18 +1,18 @@
 /**
  * Hero Slider Component for PLKNM Plumbing Services
- * 
+ *
  * Classic-style hero banner slider showcasing large-scale plumbing projects.
  * Features smooth transitions and professional imagery placeholders.
- * 
+ *
  * @author PLKNM Development Team
  * @version 1.0.0
  */
 
 "use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -22,49 +22,52 @@ export default function HeroSlider() {
       id: 1,
       title: "Large-Scale Hotel Plumbing Projects",
       subtitle: "Professional Infrastructure Solutions",
-      description: "Comprehensive plumbing systems for luxury hotels and hospitality complexes with over 50 years of expertise.",
+      description:
+        "Comprehensive plumbing systems for luxury hotels and hospitality complexes with over 50 years of expertise.",
       image: "/images/hero/hotel-plumbing.jpg", // Placeholder
-      alt: "Hotel plumbing infrastructure project"
+      alt: "Hotel plumbing infrastructure project",
     },
     {
       id: 2,
       title: "Commercial Mall & Retail Plumbing",
       subtitle: "Complex Commercial Systems",
-      description: "Advanced plumbing solutions for shopping malls, retail complexes, and commercial buildings across the region.",
+      description:
+        "Advanced plumbing solutions for shopping malls, retail complexes, and commercial buildings across the region.",
       image: "/images/hero/mall-plumbing.jpg", // Placeholder
-      alt: "Commercial mall plumbing systems"
+      alt: "Commercial mall plumbing systems",
     },
     {
       id: 3,
       title: "Resort & Bungalow Plumbing",
       subtitle: "Luxury Residential Projects",
-      description: "Premium plumbing installations for resorts, luxury bungalows, and high-end residential developments.",
+      description:
+        "Premium plumbing installations for resorts, luxury bungalows, and high-end residential developments.",
       image: "/images/hero/resort-plumbing.jpg", // Placeholder
-      alt: "Resort and bungalow plumbing project"
+      alt: "Resort and bungalow plumbing project",
     },
     {
       id: 4,
       title: "Cinema & Entertainment Complexes",
       subtitle: "Specialized Entertainment Venues",
-      description: "Custom plumbing solutions for cinemas, entertainment complexes, and showrooms with precision engineering.",
+      description:
+        "Custom plumbing solutions for cinemas, entertainment complexes, and showrooms with precision engineering.",
       image: "/images/hero/cinema-plumbing.jpg", // Placeholder
-      alt: "Cinema complex plumbing infrastructure"
-    }
+      alt: "Cinema complex plumbing infrastructure",
+    },
   ];
 
   // Auto-advance slides
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide(prev => (prev + 1) % slides.length);
     }, 5000);
 
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = index => {
     setCurrentSlide(index);
   };
-
 
   return (
     <div className="relative h-[600px] lg:h-[700px] overflow-hidden bg-gray-900">
@@ -73,7 +76,7 @@ export default function HeroSlider() {
         <div
           key={slide.id}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+            index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* Background with Gradient Fallback */}
@@ -85,8 +88,8 @@ export default function HeroSlider() {
               fill
               className="object-cover"
               priority={index === 0}
-              onError={(e) => {
-                e.target.style.display = 'none';
+              onError={e => {
+                e.target.style.display = "none";
               }}
             />
           </div>
@@ -129,7 +132,6 @@ export default function HeroSlider() {
         </div>
       ))}
 
-
       {/* Slide Indicators */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
         {slides.map((_, index) => (
@@ -137,7 +139,9 @@ export default function HeroSlider() {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-              index === currentSlide ? 'bg-white' : 'bg-white/50 hover:bg-white/75'
+              index === currentSlide
+                ? "bg-white"
+                : "bg-white/50 hover:bg-white/75"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

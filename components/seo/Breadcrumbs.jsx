@@ -1,24 +1,24 @@
 /**
  * Breadcrumbs Component for PLKNM Plumbing Services
- * 
+ *
  * This component provides navigation breadcrumbs that improve both
  * user experience and SEO by showing the page hierarchy.
- * 
+ *
  * Features:
  * - Automatic breadcrumb generation based on URL path
  * - Structured data integration
  * - Customizable styling
  * - Accessibility support
  * - Mobile-responsive design
- * 
+ *
  * @author PLKNM Development Team
  * @version 1.0.0
  */
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { BreadcrumbSchema } from './StructuredData';
-import { siteConfig } from '../../lib/seo-config';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { BreadcrumbSchema } from "./StructuredData";
+import { siteConfig } from "../../lib/seo-config";
 
 /**
  * Main Breadcrumbs Component
@@ -29,19 +29,20 @@ import { siteConfig } from '../../lib/seo-config';
  * @param {boolean} props.showStructuredData - Whether to include structured data
  * @returns {JSX.Element} Breadcrumbs navigation component
  */
-export default function Breadcrumbs({ 
-  customBreadcrumbs = null, 
-  className = '', 
+export default function Breadcrumbs({
+  customBreadcrumbs = null,
+  className = "",
   showHome = true,
-  showStructuredData = true 
+  showStructuredData = true,
 }) {
   const pathname = usePathname();
-  
+
   // Generate breadcrumbs from pathname if custom ones aren't provided
-  const breadcrumbs = customBreadcrumbs || generateBreadcrumbs(pathname, showHome);
-  
+  const breadcrumbs =
+    customBreadcrumbs || generateBreadcrumbs(pathname, showHome);
+
   // Don't show breadcrumbs on home page unless there are custom ones
-  if (pathname === '/' && !customBreadcrumbs) {
+  if (pathname === "/" && !customBreadcrumbs) {
     return null;
   }
 
@@ -49,16 +50,16 @@ export default function Breadcrumbs({
     <>
       {/* Structured Data for SEO */}
       {showStructuredData && (
-        <BreadcrumbSchema 
+        <BreadcrumbSchema
           breadcrumbs={breadcrumbs.map(item => ({
             name: item.label,
-            url: `${siteConfig.url}${item.href}`
-          }))} 
+            url: `${siteConfig.url}${item.href}`,
+          }))}
         />
       )}
-      
+
       {/* Breadcrumb Navigation */}
-      <nav 
+      <nav
         aria-label="Breadcrumb navigation"
         className={`breadcrumbs ${className}`}
       >
@@ -70,18 +71,15 @@ export default function Breadcrumbs({
                   /
                 </span>
               )}
-              
+
               {index === breadcrumbs.length - 1 ? (
                 // Current page - not a link
-                <span 
-                  className="text-gray-900 font-medium"
-                  aria-current="page"
-                >
+                <span className="text-gray-900 font-medium" aria-current="page">
                   {item.label}
                 </span>
               ) : (
                 // Link to previous pages
-                <Link 
+                <Link
                   href={item.href}
                   className="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200"
                   title={`Go to ${item.label}`}
@@ -104,31 +102,31 @@ export default function Breadcrumbs({
  * @returns {Array} Array of breadcrumb objects
  */
 function generateBreadcrumbs(pathname, showHome = true) {
-  const pathSegments = pathname.split('/').filter(segment => segment !== '');
+  const pathSegments = pathname.split("/").filter(segment => segment !== "");
   const breadcrumbs = [];
-  
+
   // Add home breadcrumb
   if (showHome) {
     breadcrumbs.push({
-      label: 'Home',
-      href: '/'
+      label: "Home",
+      href: "/",
     });
   }
-  
+
   // Generate breadcrumbs for each path segment
-  let currentPath = '';
+  let currentPath = "";
   pathSegments.forEach((segment, index) => {
     currentPath += `/${segment}`;
-    
+
     // Convert segment to readable label
     const label = formatSegmentLabel(segment);
-    
+
     breadcrumbs.push({
       label,
-      href: currentPath
+      href: currentPath,
     });
   });
-  
+
   return breadcrumbs;
 }
 
@@ -140,25 +138,25 @@ function generateBreadcrumbs(pathname, showHome = true) {
 function formatSegmentLabel(segment) {
   // Handle special cases
   const specialCases = {
-    'emergency-plumbing': 'Emergency Plumbing',
-    'drain-cleaning': 'Drain Cleaning',
-    'water-heater': 'Water Heater Services',
-    'pipe-repair': 'Pipe Repair',
-    'bathroom-plumbing': 'Bathroom Plumbing',
-    'kitchen-plumbing': 'Kitchen Plumbing',
-    'leak-detection': 'Leak Detection',
-    'commercial-plumbing': 'Commercial Plumbing',
+    "emergency-plumbing": "Emergency Plumbing",
+    "drain-cleaning": "Drain Cleaning",
+    "water-heater": "Water Heater Services",
+    "pipe-repair": "Pipe Repair",
+    "bathroom-plumbing": "Bathroom Plumbing",
+    "kitchen-plumbing": "Kitchen Plumbing",
+    "leak-detection": "Leak Detection",
+    "commercial-plumbing": "Commercial Plumbing",
   };
-  
+
   if (specialCases[segment]) {
     return specialCases[segment];
   }
-  
+
   // Default formatting: replace hyphens with spaces and capitalize
   return segment
-    .split('-')
+    .split("-")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+    .join(" ");
 }
 
 /**
@@ -168,45 +166,50 @@ function formatSegmentLabel(segment) {
 // Service Page Breadcrumbs
 export function ServiceBreadcrumbs({ serviceName, serviceSlug }) {
   const customBreadcrumbs = [
-    { label: 'Home', href: '/' },
-    { label: 'Services', href: '/services' },
-    { label: serviceName, href: `/services/${serviceSlug}` }
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: serviceName, href: `/services/${serviceSlug}` },
   ];
-  
+
   return <Breadcrumbs customBreadcrumbs={customBreadcrumbs} />;
 }
 
 // Location Page Breadcrumbs
 export function LocationBreadcrumbs({ locationName, locationSlug }) {
   const customBreadcrumbs = [
-    { label: 'Home', href: '/' },
-    { label: 'Service Areas', href: '/locations' },
-    { label: locationName, href: `/locations/${locationSlug}` }
+    { label: "Home", href: "/" },
+    { label: "Service Areas", href: "/locations" },
+    { label: locationName, href: `/locations/${locationSlug}` },
   ];
-  
+
   return <Breadcrumbs customBreadcrumbs={customBreadcrumbs} />;
 }
 
 // Blog Post Breadcrumbs
-export function BlogBreadcrumbs({ postTitle, postSlug, categoryName = null, categorySlug = null }) {
+export function BlogBreadcrumbs({
+  postTitle,
+  postSlug,
+  categoryName = null,
+  categorySlug = null,
+}) {
   const customBreadcrumbs = [
-    { label: 'Home', href: '/' },
-    { label: 'Blog', href: '/blog' }
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
   ];
-  
+
   // Add category if provided
   if (categoryName && categorySlug) {
     customBreadcrumbs.push({
       label: categoryName,
-      href: `/blog/category/${categorySlug}`
+      href: `/blog/category/${categorySlug}`,
     });
   }
-  
+
   // Add current post
   customBreadcrumbs.push({
     label: postTitle,
-    href: `/blog/${postSlug}`
+    href: `/blog/${postSlug}`,
   });
-  
+
   return <Breadcrumbs customBreadcrumbs={customBreadcrumbs} />;
 }

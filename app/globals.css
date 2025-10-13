@@ -46,7 +46,7 @@
 }
 
 .hover\:bg-primary:hover {
-  background-color: var(--primary);
+  /* background-color: var(--primary); */
 }
 
 .hover\:bg-primary-dark:hover {
@@ -68,13 +68,13 @@
 /* CSS Custom Properties */
 :root {
   /* Classic PLKNM Color Palette */
-  --background: #F8F9F6; /* Off-white/Cream base */
-  --background-alt: #FAF3E0; /* Alternative cream */
+  --background: #f8f9f6; /* Off-white/Cream base */
+  --background-alt: #faf3e0; /* Alternative cream */
   --foreground: #2c3e50; /* Dark blue-gray for text */
-  --primary: #007BFF; /* Light Blue - water theme */
+  --primary: #007bff; /* Light Blue - water theme */
   --primary-dark: #0056b3; /* Darker blue for hover states */
   --primary-light: #66b3ff; /* Lighter blue for accents */
-  --secondary: #4CAF50; /* Soft mint green */
+  --secondary: #4caf50; /* Soft mint green */
   --secondary-dark: #388e3c; /* Darker green */
   --secondary-light: #81c784; /* Lighter green */
   --accent: #17a2b8; /* Complementary teal */
@@ -122,7 +122,8 @@
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
   /* Border radius */
   --radius-sm: 0.25rem;
@@ -176,7 +177,18 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-open-sans), 'Open Sans', 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    var(--font-open-sans),
+    "Open Sans",
+    "Lato",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -186,12 +198,17 @@ body {
 }
 
 /* Typography improvements for SEO */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-top: 0;
   margin-bottom: 0.5em;
-  color: var(--gray-900);
+  /* color: var(--gray-900); */
 }
 
 h1 {
@@ -233,7 +250,7 @@ a {
 }
 
 a:hover {
-  color: var(--primary-dark);
+  /* color: var(--primary-dark); */
   text-decoration: none;
 }
 
@@ -260,7 +277,9 @@ button:focus {
 }
 
 /* Form elements */
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
   border: 1px solid var(--gray-300);
@@ -269,11 +288,13 @@ input, textarea, select {
   transition: border-color var(--transition-fast);
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   /* border-color: var(--primary); */
   /* box-shadow: 0 0 0 3px rgb(30 64 175 / 0.1); */
-  text-decoration: none;
+  /* text-decoration: none; */
 }
 
 /* Accessibility improvements */
@@ -349,7 +370,8 @@ img {
     text-shadow: none !important;
   }
 
-  a, a:visited {
+  a,
+  a:visited {
     text-decoration: underline;
   }
 
@@ -365,11 +387,15 @@ img {
     display: none !important;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     page-break-after: avoid;
   }
 
-  p, h2, h3 {
+  p,
+  h2,
+  h3 {
     orphans: 3;
     widows: 3;
   }
@@ -429,7 +455,6 @@ img {
   color: var(--gray-400);
   margin: 0 0.5rem;
 }
-
 
 .swiper {
   padding-top: 25px !important;
