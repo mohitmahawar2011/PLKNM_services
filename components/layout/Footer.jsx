@@ -28,7 +28,7 @@ export default function Footer() {
     { name: "FAQ", href: "/faq" },
     { name: "Testimonials", href: "/testimonials" },
     { name: "Team", href: "/team" },
-    { name: "News", href: "/news" },
+    // { name: "News", href: "/news" },
   ];
 
   return (

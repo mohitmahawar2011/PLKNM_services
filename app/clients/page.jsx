@@ -73,7 +73,7 @@ const clients = [
     location: "City Center",
     project: "Complete plumbing infrastructure for 200-room luxury hotel",
     year: "2023",
-    logo: "/images/clients/grand-palace-hotel.png", // Placeholder
+    logo: "/images/service/golden_tulip.webp", // Placeholder
   },
   {
     id: 2,
@@ -82,7 +82,7 @@ const clients = [
     location: "Downtown",
     project: "Commercial plumbing systems for 3-level shopping complex",
     year: "2023",
-    logo: "/images/clients/metro-shopping.png", // Placeholder
+    logo: "/images/service/golden_tulip.webp", // Placeholder
   },
   {
     id: 3,
@@ -91,7 +91,7 @@ const clients = [
     location: "Coastal Area",
     project: "Resort plumbing including spa and pool systems",
     year: "2023",
-    logo: "/images/clients/sunset-resort.png", // Placeholder
+    logo: "/images/service/golden_tulip.webp", // Placeholder
   },
   {
     id: 4,
@@ -100,7 +100,7 @@ const clients = [
     location: "Mall District",
     project: "Specialized plumbing for 12-screen cinema complex",
     year: "2022",
-    logo: "/images/clients/cineplex.png", // Placeholder
+    logo: "/images/service/golden_tulip.webp", // Placeholder
   },
   {
     id: 5,
@@ -109,7 +109,7 @@ const clients = [
     location: "Business District",
     project: "Commercial building plumbing for 25-floor office tower",
     year: "2022",
-    logo: "/images/clients/corporate-tower.png", // Placeholder
+    logo: "/images/service/golden_tulip.webp", // Placeholder
   },
   {
     id: 6,
@@ -118,7 +118,7 @@ const clients = [
     location: "Premium Locality",
     project: "High-end plumbing for luxury bungalow development",
     year: "2022",
-    logo: "/images/clients/luxury-estate.png", // Placeholder
+    logo: "/images/service/golden_tulip.webp", // Placeholder
   },
 ];
 
@@ -128,6 +128,82 @@ const stats = [
   { number: "100+", label: "Projects Completed" },
   { number: "95%", label: "Client Satisfaction" },
   { number: "24/7", label: "Support Available" },
+];
+
+// Certifications data
+const certifications = [
+  {
+    id: 1,
+    title: "ISO 9001:2015 Quality Management",
+    issuer: "International Organization for Standardization",
+    date: "2023-12-15",
+    validity: "2026-12-15",
+    description:
+      "Certified for quality management systems ensuring consistent service delivery and customer satisfaction.",
+    image: "/images/certifications/Construction_Certificate.png",
+    fullImage: "/images/certifications/Construction_Certificate.png",
+    category: "Quality Management",
+  },
+  {
+    id: 2,
+    title: "Plumbing Contractor License",
+    issuer: "State Plumbing Board",
+    date: "2023-01-10",
+    validity: "2025-01-10",
+    description:
+      "Licensed plumbing contractor with expertise in commercial and residential plumbing systems.",
+    image: "/images/certifications/Construction_Certificate.png",
+    fullImage: "/images/certifications/Construction_Certificate.png",
+    category: "Professional License",
+  },
+  {
+    id: 3,
+    title: "Safety Excellence Award",
+    issuer: "Construction Safety Council",
+    date: "2023-06-20",
+    validity: "Permanent",
+    description:
+      "Recognized for outstanding safety practices and zero workplace accidents over the past 5 years.",
+    image: "/images/certifications/Construction_Certificate.png",
+    fullImage: "/images/certifications/Construction_Certificate.png",
+    category: "Safety Recognition",
+  },
+  {
+    id: 4,
+    title: "Green Building Certification",
+    issuer: "Green Building Council",
+    date: "2023-03-15",
+    validity: "2026-03-15",
+    description:
+      "Certified in sustainable plumbing practices and eco-friendly installation techniques.",
+    image: "/images/certifications/Construction_Certificate.png",
+    fullImage: "/images/certifications/Construction_Certificate.png",
+    category: "Environmental",
+  },
+  {
+    id: 5,
+    title: "Commercial Plumbing Specialist",
+    issuer: "Plumbing Trade Association",
+    date: "2023-09-01",
+    validity: "2025-09-01",
+    description:
+      "Specialized certification in large-scale commercial plumbing systems and infrastructure.",
+    image: "/images/certifications/Construction_Certificate.png",
+    fullImage: "/images/certifications/Construction_Certificate.png",
+    category: "Specialization",
+  },
+  {
+    id: 6,
+    title: "Emergency Response Certified",
+    issuer: "Emergency Services Board",
+    date: "2023-11-10",
+    validity: "2024-11-10",
+    description:
+      "Certified for 24/7 emergency plumbing services with rapid response capabilities.",
+    image: "/images/certifications/Construction_Certificate.png",
+    fullImage: "/images/certifications/Construction_Certificate.png",
+    category: "Emergency Services",
+  },
 ];
 
 export default function ClientsPage() {
@@ -289,35 +365,49 @@ export default function ClientsPage() {
               {clients.map(client => (
                 <div
                   key={client.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
+                  className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300"
                 >
-                  {/* Client Logo/Image */}
-                  <div className="h-30 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <div
-                      className="text-4xl font-bold"
-                      style={{ color: "var(--primary)" }}
-                    >
-                      {client.name.charAt(0)}
+                  {/* Logo Section (like certification image) */}
+                  <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                    <Image
+                      src={client.logo}
+                      alt={client.name}
+                      fill
+                      className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                    />
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
+                        <div className="bg-[#F5F5F5] bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
+                          <div className="text-sm font-medium text-black">
+                            View Details
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   {/* Client Info */}
                   <div className="p-6">
                     <h3
-                      className="text-xl font-semibold mb-2"
+                      className="text-lg font-semibold mb-2"
                       style={{ color: "var(--foreground)" }}
                     >
                       {client.name}
                     </h3>
+
                     <div
                       className="text-sm mb-2"
                       style={{ color: "var(--primary)" }}
                     >
                       {client.type} • {client.location}
                     </div>
+
                     <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                       {client.project}
                     </p>
+
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-500">
                         Completed: {client.year}
@@ -331,6 +421,107 @@ export default function ClientsPage() {
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Certifications Section */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                style={{ color: "var(--foreground)" }}
+              >
+                Our Certifications & Awards
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Professional certifications and industry recognition that
+                demonstrate our commitment to quality, safety, and excellence in
+                plumbing services.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {certifications.map(certification => (
+                <Link
+                  key={certification.id}
+                  href={`/certifications/${certification.id}`}
+                  className="group relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
+                >
+                  {/* Certification Image */}
+                  <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden group">
+                    <div className="absolute inset-0">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={certification.image}
+                          alt={certification.title}
+                          fill
+                          className="object-cover object-center"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
+                        <div className="bg-[#F5F5F5] bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
+                          <div className="text-sm font-medium text-black">
+                            View Details
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Certification Info */}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <span
+                        className="px-3 py-1 rounded-full text-xs font-medium text-white"
+                        style={{ backgroundColor: "var(--primary)" }}
+                      >
+                        {certification.category}
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        {certification.validity === "Permanent"
+                          ? "Permanent"
+                          : "Valid"}
+                      </span>
+                    </div>
+
+                    <h3
+                      className="text-lg font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-200"
+                      style={{ color: "var(--foreground)" }}
+                    >
+                      {certification.title}
+                    </h3>
+
+                    <div className="text-sm text-gray-600 mb-2">
+                      <div className="font-medium">{certification.issuer}</div>
+                    </div>
+
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                      {certification.description}
+                    </p>
+
+                    <div className="flex justify-between items-center text-xs text-gray-500">
+                      <span>
+                        Issued:{" "}
+                        {new Date(certification.date).toLocaleDateString()}
+                      </span>
+                      {certification.validity !== "Permanent" && (
+                        <span>
+                          Expires:{" "}
+                          {new Date(
+                            certification.validity
+                          ).toLocaleDateString()}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
